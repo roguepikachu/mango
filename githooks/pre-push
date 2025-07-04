@@ -1,0 +1,13 @@
+#!/bin/sh
+# Pre-push hook to run gofmt and go vet before pushing
+
+# Format all go files
+find . -path ./vendor -prune -o -name '*.go' -print | xargs gofmt -w
+
+# Vet project
+if ! go vet ./...; then
+    echo "go vet failed. Aborting push."
+    exit 1
+fi
+
+exit 0

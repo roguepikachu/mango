@@ -1,0 +1,19 @@
+#!/bin/sh
+# Pre-commit hook to ensure docs are updated when code changes
+
+changed_go=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.go$')
+changed_docs=$(git diff --cached --name-only --diff-filter=ACM | grep -E 'README.md|docs/')
+
+if [ -n "$changed_go" ] && [ -z "$changed_docs" ]; then
+    echo "ERROR: Go files changed but no documentation updates detected."
+    echo "Please update README or docs/ accordingly."
+    exit 1
+fi
+
+# Run gofmt on staged go files
+if [ -n "$changed_go" ]; then
+    echo "$changed_go" | xargs gofmt -w
+    echo "$changed_go" | xargs git add
+fi
+
+exit 0
