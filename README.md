@@ -37,6 +37,24 @@ Flags:
   --verbose          Enable debug logging
 ```
 
+### Additional Commands
+
+manGO offers extra functionality powered by LLMs:
+
+```bash
+# Generate missing Ginkgo scenarios from recent changes
+mango generate-tests
+
+# Predict which tests might fail based on an upcoming plan
+mango predict --plan "describe feature work"
+
+# Ask for code quality advice after running tests
+mango advise
+
+# Query tests using natural language
+mango query --question "tests touching database layer"
+```
+
 ### Makefile helpers
 
 Common tasks are available via Makefile:
@@ -58,6 +76,10 @@ End-to-end tests are guarded by the `e2e` build tag. Running `make e2e` or
 - `internal/llmselector` - LLM based test selector
 - `internal/executor` - test execution helpers
 - `internal/orchestrator` - orchestrates the workflow
+- `internal/generator` - intelligent scenario generation
+- `internal/predictor` - predictive test execution
+- `internal/advisor` - code quality advisor
+- `internal/query` - natural language test querying
 - `pkg/utils` - shared utilities
 - `githooks` - example git hooks
 - `k8s` - deployment configuration
