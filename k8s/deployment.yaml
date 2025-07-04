@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mango-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: mango
+        image: mango:latest
+        command: ["/app/mango", "run"]
+      restartPolicy: Never
