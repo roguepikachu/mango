@@ -54,7 +54,6 @@ mango advise
 # Query tests using natural language
 mango query --question "tests touching database layer"
 ```
-
 ### Makefile helpers
 
 Common tasks are available via Makefile:
